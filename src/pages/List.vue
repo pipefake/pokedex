@@ -1,12 +1,14 @@
 <template>
   <v-layout>
     <h1>mostrar{{ this.mostrarlista }}</h1>
+    <ListPokemons />
     <BottomNavigation @switch="switchList" />
   </v-layout>
 </template>
 
 <script>
 import BottomNavigation from "../components/BottomNavigation.vue";
+import ListPokemons from "../layouts/ListPokemons.vue";
 
 export default {
   name: "ListComponent",
@@ -17,6 +19,7 @@ export default {
   },
   components: {
     BottomNavigation,
+    ListPokemons,
   },
   methods: {
     switchList(id_seleccion) {
