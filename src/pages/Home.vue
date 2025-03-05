@@ -34,7 +34,7 @@ export default {
         };
     },
     methods: {
-        //Función para redireccionar a la ruta /list donde se listaran los pokemones
+        //Función para redireccionar a la ruta /list donde se listaran los pokemo
         redirectToPage(){
             this.$router.push('/list');
         }
