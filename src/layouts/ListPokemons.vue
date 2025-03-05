@@ -27,7 +27,7 @@
               <span>{{ pokemon.name }}</span>
             </v-col>
             <v-col cols="3">
-              <v-btn @click="añadirFavorito(pokemon.id_pokemon)">
+              <v-btn @click="añadirFavorito(pokemon)">
                 <v-icon
                   v-if="favoritos.includes(pokemon.id_pokemon)"
                   color="yellow"
@@ -45,6 +45,7 @@
 
 <script>
 import axios from "axios";
+import { mapState, mapActions } from "vuex";
 
 export default {
   data() {
@@ -56,12 +57,13 @@ export default {
     };
   },
   methods: {
-    añadirFavorito(id_pokemon) {
-      const index = this.favoritos.indexOf(id_pokemon);
-      if (index === -1) {
-        this.favoritos.push(id_pokemon);
+    
+    añadirFavorito(pokemon) {
+      const isFavorito = this.favorites.some(fav => fav.name === pokemon.name);
+      if (!isFavorito) {
+        this.agregarPokemonFavorito(pokemon); 
       } else {
-        this.favoritos.splice(index, 1);
+        this.eliminarPokemonFavorito(pokemonName); 
       }
     },
     cargarDatosPokemones() {
@@ -82,6 +84,8 @@ export default {
     this.cargarDatosPokemones();
   },
   computed: {
+     ...mapActions(['agregarPokemonFavorito', 'eliminarPokemonFavorito']),
+     ...mapState(['favorites']),
     filteredPokemones() {
       if (!this.search) return this.pokemones;
       return this.pokemones.filter((pokemon) =>
