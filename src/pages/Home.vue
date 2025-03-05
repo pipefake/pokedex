@@ -27,12 +27,14 @@ export default {
     name: 'HomeComponent',
     data(){
         return{
+            //Se inicializan los siguientes parametros para no quemar el texto en el código
             titulo:'Welcome to Pokédex',
             descripcion:'The digital encyclopedia created by Professor Oak is an invaluable tool to Trainers in the Pokémon world.',
             imagen_portala: require('../assets/Pokemon_portada.png'),
         };
     },
     methods: {
+        //Función para redireccionar a la ruta /list donde se listaran los pokemones
         redirectToPage(){
             this.$router.push('/list');
         }
