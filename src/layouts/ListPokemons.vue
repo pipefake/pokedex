@@ -90,7 +90,7 @@ export default {
     cargarDatosPokemones() {
       this.estadoCarga = true;
       axios
-        .get("https://pokeapi.co/api/v2/pokemon?limit=5")
+        .get("https://pokeapi.co/api/v2/pokemon?limit=15")
         .then((response) => {
           this.pokemones = response.data.results;
           console.log(response.data.results);

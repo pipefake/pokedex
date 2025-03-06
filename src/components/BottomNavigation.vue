@@ -1,13 +1,14 @@
 <template>
   <v-layout
     class="overflow-visible bottom"
-    style="position: fixed !important; height: 56px; width: 100vw; bottom: 0px"
+    style="position: fixed !important; height: 80px; width: 100vw; bottom: 0px"
   >
     <v-row col="12">
       <v-row class="d-flex ma-0 align-center justify-center" md-4 sm-12 xs-12>
       </v-row>
       <v-row class="d-flex ma-0 align-center justify-center" md-4 sm-12 xs-12>
         <v-btn
+          max-height="55px"
           class="text-white"
           :color="selected === 1 ? '#F22539' : '#BFBFBF'"
           @click="setSelected(1)"
@@ -18,6 +19,7 @@
       </v-row>
       <v-row class="d-flex ma-0 align-center justify-center" md-4 sm-12 xs-12>
         <v-btn
+          max-height="55px"
           class="text-white"
           :color="selected === 2 ? '#F22539' : '#BFBFBF'"
           @click="setSelected(2)"
