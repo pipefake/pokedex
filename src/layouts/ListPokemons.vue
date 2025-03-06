@@ -1,19 +1,17 @@
 <template>
-  <v-container>
-    <v-card class="mx-auto" max-width="400">
-      <v-card-text>
-        <v-text-field
-          :loading="loading"
-          append-inner-icon="mdi-magnify"
-          density="compact"
-          v-model="search"
-          label="Buscar Pokémones"
-          variant="solo"
-          hide-details
-          single-line
-        ></v-text-field>
-      </v-card-text>
-    </v-card>
+  <v-container max-width="800px">
+    <v-flex class="ma-8">
+      <v-text-field
+        :loading="loading"
+        append-inner-icon="mdi-magnify"
+        density="compact"
+        v-model="search"
+        label="Search"
+        variant="solo"
+        hide-details
+        single-line
+      ></v-text-field>
+    </v-flex>
 
     <v-row>
       <v-col
@@ -21,19 +19,30 @@
         :key="pokemon.id_pokemon"
         cols="12"
       >
-        <v-card class="d-flex align-center pa-3" style="height: 60px">
+        <v-card
+          @click="dialog = true"
+          class="d-flex align-center pa-3"
+          style="height: 60px"
+        >
           <v-row>
             <v-col cols="9">
               <span>{{ pokemon.name }}</span>
             </v-col>
-            <v-col cols="3">
-              <v-btn @click="añadirFavorito(pokemon)">
+            <v-col cols="3" class="d-flex justify-end">
+              <v-btn
+                class="pa-0"
+                rounded
+                elevation-0
+                color="#F5F5F5"
+                @click="añadirFavorito(pokemon)"
+              >
                 <v-icon
-                  v-if="favoritos.includes(pokemon.id_pokemon)"
-                  color="yellow"
+                  v-if="favorites.some((fav) => fav.name === pokemon.name)"
+                  color="#ECA539"
+                  size="25"
                   >mdi-star</v-icon
                 >
-                <v-icon v-else>mdi-star-outline</v-icon>
+                <v-icon size="25" v-else>mdi-star-outline</v-icon>
               </v-btn>
             </v-col>
           </v-row>
@@ -52,46 +61,47 @@ export default {
     return {
       search: "",
       estadoCarga: false,
-      favoritos: [],
       pokemones: [],
     };
   },
-  methods: {
-    
-    añadirFavorito(pokemon) {
-      const isFavorito = this.favorites.some(fav => fav.name === pokemon.name);
-      if (!isFavorito) {
-        this.agregarPokemonFavorito(pokemon); 
-      } else {
-        this.eliminarPokemonFavorito(pokemonName); 
-      }
-    },
-    cargarDatosPokemones() {
-      this.estadoCarga = true;
-      axios
-        .get("https://pokeapi.co/api/v2/pokemon?limit=5")
-        .then((response) => {
-          this.pokemones = response.data.results.map((pokemon, index) => ({
-            id_pokemon: index + 1,
-            name: pokemon.name,
-          }));
-        })
-        .catch((error) => console.error("Error cargando Pokemones:", error))
-        .finally(() => (this.estadoCarga = false));
-    },
-  },
-  mounted() {
-    this.cargarDatosPokemones();
-  },
+
   computed: {
-     ...mapActions(['agregarPokemonFavorito', 'eliminarPokemonFavorito']),
-     ...mapState(['favorites']),
+    ...mapState(["favorites"]),
+
     filteredPokemones() {
       if (!this.search) return this.pokemones;
       return this.pokemones.filter((pokemon) =>
         pokemon.name.toLowerCase().includes(this.search.toLowerCase())
       );
     },
+  },
+
+  methods: {
+    ...mapActions(["agregarPokemonFavorito"]),
+
+    añadirFavorito(pokemon) {
+      this.agregarPokemonFavorito(pokemon);
+    },
+
+    isFavorito(pokemonName) {
+      return this.favorites.some((fav) => fav.name === pokemonName);
+    },
+
+    cargarDatosPokemones() {
+      this.estadoCarga = true;
+      axios
+        .get("https://pokeapi.co/api/v2/pokemon?limit=5")
+        .then((response) => {
+          this.pokemones = response.data.results;
+          console.log(response.data.results);
+        })
+        .catch((error) => console.error("Error cargando Pokemones:", error))
+        .finally(() => (this.estadoCarga = false));
+    },
+  },
+
+  mounted() {
+    this.cargarDatosPokemones();
   },
 };
 </script>
@@ -101,6 +111,6 @@ export default {
   transition: 0.3s ease-in-out;
 }
 .v-card:hover {
-  transform: scale(1.05);
+  transform: scale(1.01);
 }
 </style>

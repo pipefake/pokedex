@@ -1,7 +1,7 @@
 <template>
   <v-layout>
-    <h1>mostrar{{ this.mostrarlista }}</h1>
-    <ListPokemons />
+    <ListPokemons v-if="this.mostrarlista === 1" />
+
     <BottomNavigation @switch="switchList" />
   </v-layout>
 </template>
@@ -14,7 +14,7 @@ export default {
   name: "ListComponent",
   data() {
     return {
-      mostrarlista: "all", // Estado inicial
+      mostrarlista: 1, // Estado inicial
     };
   },
   components: {

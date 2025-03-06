@@ -4,28 +4,30 @@
     style="position: fixed !important; height: 56px; width: 100vw; bottom: 0px"
   >
     <v-row col="12">
-      <v-row md-4 sm-12 xs-12> </v-row>
-      <v-row md-4 sm-12 xs-12>
+      <v-row class="d-flex ma-0 align-center justify-center" md-4 sm-12 xs-12>
+      </v-row>
+      <v-row class="d-flex ma-0 align-center justify-center" md-4 sm-12 xs-12>
         <v-btn
           class="text-white"
-          :color="selected === '1' ? '#F22539' : '#BFBFBF'"
-          @click="setSelected('1')"
+          :color="selected === 1 ? '#F22539' : '#BFBFBF'"
+          @click="setSelected(1)"
         >
           <v-icon color="white">mdi-format-list-bulleted</v-icon>
           All
         </v-btn>
       </v-row>
-      <v-row md-4 sm-12 xs-12>
+      <v-row class="d-flex ma-0 align-center justify-center" md-4 sm-12 xs-12>
         <v-btn
           class="text-white"
-          :color="selected === '2' ? '#F22539' : '#BFBFBF'"
-          @click="setSelected('2')"
+          :color="selected === 2 ? '#F22539' : '#BFBFBF'"
+          @click="setSelected(2)"
         >
           <v-icon color="white">mdi-star</v-icon>
           Favorites
         </v-btn>
       </v-row>
-      <v-row md-4 sm-12 xs-12> </v-row>
+      <v-row class="d-flex ma-0 align-center justify-center" md-4 sm-12 xs-12>
+      </v-row>
     </v-row>
   </v-layout>
 </template>
@@ -33,7 +35,7 @@
 export default {
   data() {
     return {
-      selected: "1",
+      selected: 1,
     };
   },
   methods: {
