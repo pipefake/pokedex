@@ -1,8 +1,7 @@
 <template>
-  <v-layout>
+  <v-layout class="pa-5">
     <ListPokemons v-if="this.mostrarlista === 1" />
     <ListFavoritesPokemons v-if="this.mostrarlista === 2" />
-
     <BottomNavigation @switch="switchList" />
   </v-layout>
 </template>

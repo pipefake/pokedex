@@ -1,15 +1,12 @@
 <template>
-  <v-layout
-    class="overflow-visible bottom"
-    style="position: fixed !important; height: 80px; width: 100vw; bottom: 0px"
-  >
+  <v-layout class="overflow-visible bottom elevation-11 content-btns">
     <v-row col="12">
       <v-row class="d-flex ma-0 align-center justify-center" md-4 sm-12 xs-12>
       </v-row>
       <v-row class="d-flex ma-0 align-center justify-center" md-4 sm-12 xs-12>
         <v-btn
           max-height="55px"
-          class="text-white"
+          class="text-white text-none"
           :color="selected === 1 ? '#F22539' : '#BFBFBF'"
           @click="setSelected(1)"
         >
@@ -61,5 +58,15 @@ export default {
   height: 40px !important;
   padding: 0;
   margin: 0;
+}
+.content-btns {
+  z-index: 900;
+  position: fixed !important;
+  overflow: hidden;
+  height: 80px;
+  width: 100vw;
+  bottom: 0px;
+  background-color: white;
+  left: 0;
 }
 </style>

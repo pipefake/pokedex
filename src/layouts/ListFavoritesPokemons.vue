@@ -20,7 +20,7 @@
           :key="pokemon.id_pokemon"
           cols="12"
         >
-          <DetallePokemon :pokemon="pokemon" />
+          <DetallePokemon :pokemon_name="pokemon" />
         </v-col>
       </v-row>
     </v-container>
@@ -56,14 +56,6 @@ export default {
 
   methods: {
     ...mapActions(["agregarPokemonFavorito"]),
-
-    añadirFavorito(pokemon) {
-      this.agregarPokemonFavorito(pokemon);
-    },
-
-    isFavorito(pokemonName) {
-      return this.favorites.some((fav) => fav.name === pokemonName);
-    },
 
     cargarDatosPokemones() {
       this.estadoCarga = true;

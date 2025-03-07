@@ -9,24 +9,28 @@ const vuexLocal = new VuexPersistence({
 export default createStore({
   state: {
     favorites: [],
+    isLoading: false,
   },
   mutations: {
     agregarFavorito(state, pokemon) {
-      const exists = state.favorites.some(fav => fav.name === pokemon.name);
+      const exists = state.favorites.some(fav => fav === pokemon);
       if (!exists) {
         state.favorites.push(pokemon);
       }
     },
-    eliminarFavorito(state, pokemonName) {
-      state.favorites = state.favorites.filter(fav => fav.name !== pokemonName);
+    eliminarFavorito(state, pokemon) {
+      state.favorites = state.favorites.filter(fav => fav !== pokemon);
+    },
+    setLoading(state, status) {
+      state.isLoading = status;
     },
   },
   actions: {
     agregarPokemonFavorito({ commit }, pokemon) {
       commit('agregarFavorito', pokemon);
     },
-    eliminarPokemonFavorito({ commit }, pokemonName) {
-      commit('eliminarFavorito', pokemonName);
+    eliminarPokemonFavorito({ commit }, pokemon) {
+      commit('eliminarFavorito', pokemon);
     },
   },
   plugins: [vuexLocal.plugin],
