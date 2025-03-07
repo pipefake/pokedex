@@ -4,6 +4,7 @@
       <v-row class="d-flex ma-0 align-center justify-center" md-4 sm-12 xs-12>
       </v-row>
       <v-row class="d-flex ma-0 align-center justify-center" md-4 sm-12 xs-12>
+        <!-- PublicList Button -->
         <v-btn
           max-height="55px"
           class="text-white text-none"
@@ -15,6 +16,7 @@
         </v-btn>
       </v-row>
       <v-row class="d-flex ma-0 align-center justify-center" md-4 sm-12 xs-12>
+        <!-- FavoriteList Button -->
         <v-btn
           max-height="55px"
           class="text-white"
@@ -26,6 +28,7 @@
         </v-btn>
       </v-row>
       <v-row class="d-flex ma-0 align-center justify-center" md-4 sm-12 xs-12>
+        <!-- Exit Button -->
         <v-btn
           max-height="55px"
           class="text-white elevation-0"

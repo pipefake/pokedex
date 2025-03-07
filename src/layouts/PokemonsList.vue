@@ -26,7 +26,7 @@
 import { mapState } from "vuex";
 import api from "@/utils/AxiosInstance.js";
 import SearchComponente from "../components/SearchComponente.vue";
-import DetallePokemon from "../components/DetallePokemon.vue";
+import DetallePokemon from "../components/DetailPokemon.vue";
 import EmptyList from "../components/EmptyList.vue";
 
 export default {

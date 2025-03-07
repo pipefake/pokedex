@@ -10,7 +10,7 @@
       </v-col>
     </v-row>
   </v-card>
-
+  <!-- Display Details ok Pokemons -->
   <v-dialog
     min-width="310"
     max-width="570"

@@ -30,7 +30,7 @@
   <script>
 import axios from "axios";
 import { mapState, mapActions } from "vuex";
-import DetallePokemon from "../components/DetallePokemon.vue";
+import DetallePokemon from "../components/DetailPokemon.vue";
 
 export default {
   data() {

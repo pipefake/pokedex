@@ -1,4 +1,5 @@
 <template>
+  <!-- Input Search Value -->
   <v-flex class="ma-8">
     <v-text-field
       :loading="loading"
@@ -19,8 +20,8 @@ export default {
   name: "SearchComponente",
   data() {
     return {
-      search: "", // Inicializamos con una cadena vacía
-      loading: false, // Puedes agregar el estado de loading si lo necesitas
+      search: "", // Start with an empty value
+      loading: false, // Star with loading false
     };
   },
   methods: {

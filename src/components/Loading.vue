@@ -1,4 +1,5 @@
 <template>
+  <!-- Pokebola Loader -->
   <v-flex v-if="isLoading" class="loader-overlay">
     <v-img
       :src="imgLoader"

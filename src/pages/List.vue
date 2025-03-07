@@ -8,7 +8,7 @@
 
 <script>
 import BottomNavigation from "../components/BottomNavigation.vue";
-import ListPokemons from "../layouts/ListPokemons.vue";
+import ListPokemons from "../layouts/PokemonsList.vue";
 // import ListFavoritesPokemons from "../layouts/ListFavoritesPokemons.vue";
 
 export default {
