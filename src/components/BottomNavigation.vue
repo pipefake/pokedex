@@ -26,6 +26,15 @@
         </v-btn>
       </v-row>
       <v-row class="d-flex ma-0 align-center justify-center" md-4 sm-12 xs-12>
+        <v-btn
+          max-height="55px"
+          class="text-white elevation-0"
+          color="#FFFFFF"
+          flat
+          @click="redirectToPage"
+        >
+          <v-icon size="20" color="black">mdi-logout</v-icon>
+        </v-btn>
       </v-row>
     </v-row>
   </v-layout>
@@ -41,6 +50,9 @@ export default {
     setSelected(id_seleccion) {
       this.selected = id_seleccion;
       this.$emit("switch", this.selected);
+    },
+    redirectToPage() {
+      this.$router.push("/");
     },
   },
 };

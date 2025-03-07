@@ -11,8 +11,13 @@
     </v-row>
   </v-card>
 
-  <v-dialog class="d-flex justify-center align-center" v-model="dialog">
-    <v-card min-width="310" max-width="570">
+  <v-dialog
+    min-width="310"
+    max-width="570"
+    class="d-flex justify-center align-center"
+    v-model="dialog"
+  >
+    <v-card>
       <v-img color="surface-variant" :height="200" :src="img_fondo" cover>
         <v-toolbar color="transparent">
           <div class="position-absolute top-0 right-0 p-2">

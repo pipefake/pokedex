@@ -1,4 +1,5 @@
 <template>
+  <!-- List view -->
   <v-layout class="pa-5">
     <ListPokemons :tipo_lista="this.mostrarlista" />
     <BottomNavigation @switch="switchList" />

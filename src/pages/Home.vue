@@ -1,4 +1,5 @@
 <template>
+  <!-- Home View -->
   <v-layout class="layout-home">
     <v-col class="d-flex flex-column justify-center align-center">
       <v-img

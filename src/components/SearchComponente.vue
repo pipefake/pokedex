@@ -16,7 +16,7 @@
 
 <script>
 export default {
-  name: "SearchComponent",
+  name: "SearchComponente",
   data() {
     return {
       search: "", // Inicializamos con una cadena vacía
@@ -26,7 +26,7 @@ export default {
   methods: {
     activadorBuscador() {
       // Emitimos el valor actualizado de search
-      this.$emit("buscador", this.search);
+      this.$emit("search", this.search);
     },
   },
 };

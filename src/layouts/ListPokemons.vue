@@ -1,7 +1,8 @@
 <template>
+  <!-- ListAll Layout -->
   <v-container max-width="800px">
     <!-- Search Component -->
-    <Buscador @buscador="actualizarSearch" />
+    <SearchComponente @search="updateSearch" />
 
     <!-- Empty List State -->
     <v-row v-if="!estadoCarga && filteredPokemones.length === 0">
@@ -24,7 +25,7 @@
 <script>
 import { mapState } from "vuex";
 import api from "@/utils/AxiosInstance.js";
-import Buscador from "../components/Buscador.vue";
+import SearchComponente from "../components/SearchComponente.vue";
 import DetallePokemon from "../components/DetallePokemon.vue";
 import EmptyList from "../components/EmptyList.vue";
 
@@ -37,7 +38,7 @@ export default {
     },
   },
   components: {
-    Buscador,
+    SearchComponente,
     DetallePokemon,
     EmptyList,
   },
@@ -73,7 +74,7 @@ export default {
   },
 
   methods: {
-    actualizarSearch(value) {
+    updateSearch(value) {
       this.search = value; // Update search term
     },
 
