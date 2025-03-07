@@ -17,7 +17,7 @@ export default {
   name: "LoadingComponent",
   data() {
     return {
-      imgLoader: require("../assets/Loader.png"),
+      imgLoader: require("../assets/Pokebola.png"),
     };
   },
   computed: {

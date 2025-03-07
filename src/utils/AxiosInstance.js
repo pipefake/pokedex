@@ -24,7 +24,7 @@ api.interceptors.response.use(
     //Simulación de estado de carga en la app de 1.5 segundo de espera
     setTimeout(() => {
       store.commit("setLoading", false);
-    }, 1000);
+    }, 1500);
 
     //Cambiar en producción
     // store.commit("setLoading", false);

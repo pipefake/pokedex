@@ -5,16 +5,8 @@
         <span class="lato-regular">{{ pokemon_name }}</span>
       </v-col>
       <v-col cols="3" class="d-flex justify-end">
-        <v-btn
-          class="pa-0"
-          icon="$menu"
-          elevation-0
-          color="#F5F5F5"
-          @click="añadirFavorito(pokemon_name)"
-        >
-          <v-icon v-if="isFavorite" color="#ECA539" size="27">mdi-star</v-icon>
-          <v-icon size="27" v-else>mdi-star-outline</v-icon>
-        </v-btn>
+        <!-- Componente FavoriteButton -->
+        <FavoriteButton :pokemon_name="pokemon_name" />
       </v-col>
     </v-row>
   </v-card>
@@ -85,6 +77,7 @@
 <script>
 import { mapState, mapActions } from "vuex";
 import api from "@/utils/AxiosInstance.js";
+import FavoriteButton from "@/components/FavoriteButton.vue";
 
 export default {
   props: {
@@ -92,6 +85,9 @@ export default {
       type: String,
       required: true,
     },
+  },
+  components: {
+    FavoriteButton,
   },
   data() {
     return {
