@@ -65,9 +65,7 @@
           >
             Share to my friends
           </v-btn>
-          <v-btn icon="$menu" color="#F5F5F5">
-            <v-icon color="#ECA539" size="25">mdi-star</v-icon>
-          </v-btn>
+          <FavoriteButton :pokemon_name="pokemon_name" />
         </div>
       </v-card-text>
     </v-card>

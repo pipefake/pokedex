@@ -1,8 +1,15 @@
 <template>
   <v-container max-width="800px">
+    <!-- Search Component -->
     <Buscador @buscador="actualizarSearch" />
 
-    <v-row>
+    <!-- Empty List State -->
+    <v-row v-if="!estadoCarga && filteredPokemones.length === 0">
+      <EmptyList />
+    </v-row>
+
+    <!-- Displaying Pokemons -->
+    <v-row v-if="!estadoCarga && filteredPokemones.length > 0">
       <v-col
         v-for="pokemon in filteredPokemones"
         :key="pokemon.id_pokemon"
@@ -18,55 +25,55 @@
 import { mapState } from "vuex";
 import api from "@/utils/AxiosInstance.js";
 import Buscador from "../components/Buscador.vue";
-import DetallePokemon from "../components/DetallePokemon";
+import DetallePokemon from "../components/DetallePokemon.vue";
+import EmptyList from "../components/EmptyList.vue";
 
 export default {
   name: "AllPokemonsComponent",
   components: {
     Buscador,
     DetallePokemon,
+    EmptyList,
   },
   data() {
     return {
-      search: "",
-      estadoCarga: false,
-      pokemones: [],
-      loading: true,
+      search: "", // Search input
+      estadoCarga: false, // Loading state
+      pokemones: [], // Pokemon data
     };
   },
 
   computed: {
     ...mapState(["favorites"]),
     filteredPokemones() {
-      if (!this.search) return this.pokemones;
-      return this.pokemones.filter((pokemon) =>
-        pokemon.name.toLowerCase().includes(this.search.toLowerCase())
+      if (!this.search) return this.pokemones; // No search, return all pokemons
+      return this.pokemones.filter(
+        (pokemon) =>
+          pokemon.name.toLowerCase().includes(this.search.toLowerCase()) // Filter by name
       );
     },
   },
 
   methods: {
     actualizarSearch(value) {
-      console.log(value);
-      this.search = value;
+      this.search = value; // Update search term
     },
 
     async cargarDatosPokemones() {
-      this.estadoCarga = true;
+      this.estadoCarga = true; // Set loading state to true
       try {
-        const response = await api.get("/api/v2/pokemon?limit=10");
-        this.pokemones = response.data.results;
-        console.log(response.data.results);
-        this.estadoCarga = false;
+        const response = await api.get("/api/v2/pokemon?limit=10"); // Fetch Pokémon data
+        this.pokemones = response.data.results; // Set pokemons
+        this.estadoCarga = false; // Set loading state to false
       } catch (error) {
         console.error("Error cargando Pokemones:", error);
-        this.estadoCarga = false;
+        this.estadoCarga = false; // In case of error, stop loading
       }
     },
   },
 
   mounted() {
-    this.cargarDatosPokemones();
+    this.cargarDatosPokemones(); // Load Pokémon data when component is mounted
   },
 };
 </script>
