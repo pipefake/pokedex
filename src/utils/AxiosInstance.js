@@ -8,7 +8,7 @@ const api = axios.create({
 
 api.interceptors.request.use(
   (config) => {
-    //Al llamar esta instancia en un componente se muestra el estado de carga en la app
+    //When use this instance set loading status true
     store.commit("setLoading", true);
     return config;
   },
@@ -21,17 +21,17 @@ api.interceptors.request.use(
 api.interceptors.response.use(
   (response) => {
 
-    //Simulación de estado de carga en la app de 1.5 segundo de espera
+    //Loading status simulation of 1.5 segs
     setTimeout(() => {
       store.commit("setLoading", false);
     }, 1500);
 
-    //Cambiar en producción
+    //Production
     // store.commit("setLoading", false);
     return response;
   },
   (error) => {
-    //Si hay un error en el axios, también desactivamos el estado
+    //If there is an axios mistake set status false
     store.commit("setLoading", false);
     return Promise.reject(error);
   }
