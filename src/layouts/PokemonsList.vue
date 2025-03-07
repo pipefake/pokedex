@@ -16,7 +16,7 @@
         :key="pokemon.id_pokemon"
         cols="12"
       >
-        <DetallePokemon :pokemon_name="pokemon.name" />
+        <PokemoDetails :pokemon_name="pokemon.name" />
       </v-col>
     </v-row>
   </v-container>
@@ -25,8 +25,10 @@
 <script>
 import { mapState } from "vuex";
 import api from "@/utils/AxiosInstance.js";
+
+//Components
 import SearchComponente from "../components/SearchComponente.vue";
-import DetallePokemon from "../components/DetailPokemon.vue";
+import PokemoDetails from "../components/DetailPokemon.vue";
 import EmptyList from "../components/EmptyList.vue";
 
 export default {
@@ -39,7 +41,7 @@ export default {
   },
   components: {
     SearchComponente,
-    DetallePokemon,
+    PokemoDetails,
     EmptyList,
   },
   data() {
@@ -51,7 +53,10 @@ export default {
   },
 
   computed: {
+    //State Favorites
     ...mapState(["favorites"]),
+
+    //Filters
     filteredPokemones() {
       let filtered = this.pokemones;
 
@@ -82,7 +87,7 @@ export default {
       this.estadoCarga = true; // Set loading state to true
       try {
         const response = await api.get("/api/v2/pokemon?limit=10"); // Fetch Pokémon data
-        this.pokemones = response.data.results; // Set pokemons
+        this.pokemones = response.data.results; // Set pokemons with api response
         this.estadoCarga = false; // Set loading state to false
       } catch (error) {
         console.error("Error cargando Pokemones:", error);
@@ -92,7 +97,7 @@ export default {
   },
 
   mounted() {
-    this.cargarDatosPokemones(); // Load Pokémon data when component is mounted
+    this.cargarDatosPokemones(); // Load Pokemon data when component is mounted
   },
 };
 </script>

@@ -1,7 +1,7 @@
 <template>
   <v-card class="d-flex align-center pa-3 ma-0" style="height: 60px">
     <v-row>
-      <v-col class="d-flex align-center" @click="activadorDetalle" cols="9">
+      <v-col class="d-flex align-center" @click="detailActivator" cols="9">
         <span class="lato-regular">{{ pokemon_name }}</span>
       </v-col>
       <v-col cols="3" class="d-flex justify-end">
@@ -18,7 +18,7 @@
     v-model="dialog"
   >
     <v-card>
-      <v-img color="surface-variant" :height="200" :src="img_fondo" cover>
+      <v-img color="surface-variant" :height="200" :src="img_background" cover>
         <v-toolbar color="transparent">
           <div class="position-absolute top-0 right-0 p-2">
             <v-btn @click="dialog = false" icon="$menu">
@@ -60,13 +60,18 @@
             {{ pokemon.types.map((type) => type.type.name).join(", ") }}
           </div>
         </div>
-        <div class="d-flex ma-0 align-center justify-center" md-4 sm-12 xs-12>
+        <div
+          class="d-flex ma-0 align-center justify-space-between"
+          md-4
+          sm-12
+          xs-12
+        >
           <v-btn
             rounded
             min-height="45px"
             class="text-white mr-8 text-none"
             color="#F22539"
-            @click="copiarInformacion"
+            @click="copyInformation"
           >
             Share to my friends
           </v-btn>
@@ -100,13 +105,13 @@ export default {
         weight: null,
         height: null,
         types: [],
-        image: null, // Aquí almacenamos la URL de la imagen
+        image: null,
       },
-      img_fondo: require("../assets/FondoDetalle.png"),
+      img_background: require("../assets/DetailsBackground.png"),
     };
   },
   methods: {
-    ...mapActions(["agregarPokemonFavorito", "eliminarPokemonFavorito"]),
+    ...mapActions(["addFavoritePokemon", "deleteFavoritePokemon"]),
     async consultarPokemon() {
       try {
         const response = await api.get(`/api/v2/pokemon/${this.pokemon_name}`);
@@ -119,11 +124,11 @@ export default {
         console.error("Error loading Pokemon:", error);
       }
     },
-    activadorDetalle() {
+    detailActivator() {
       this.dialog = true;
       this.consultarPokemon();
     },
-    copiarInformacion() {
+    copyInformation() {
       navigator.clipboard.writeText(
         `Name: ${this.pokemon.name}, Weight: ${this.pokemon.weight}, Height: ${
           this.pokemon.height
@@ -131,19 +136,6 @@ export default {
           .map((type) => type.type.name)
           .join(", ")}`
       );
-    },
-
-    añadirFavorito(pokemon_name) {
-      const isFavorite = this.favorites.some(
-        (pokemon) => pokemon === pokemon_name
-      );
-
-      if (!isFavorite) {
-        this.agregarPokemonFavorito(pokemon_name);
-      } else if (isFavorite) {
-        console.log("Ya está!");
-        this.eliminarPokemonFavorito(pokemon_name);
-      }
     },
   },
   mounted() {},

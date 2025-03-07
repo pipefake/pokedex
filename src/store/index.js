@@ -12,13 +12,13 @@ export default createStore({
     isLoading: false,
   },
   mutations: {
-    agregarFavorito(state, pokemon) {
+    addFavorite(state, pokemon) {
       const exists = state.favorites.some(fav => fav === pokemon);
       if (!exists) {
         state.favorites.push(pokemon);
       }
     },
-    eliminarFavorito(state, pokemon) {
+    deleteFavorite(state, pokemon) {
       state.favorites = state.favorites.filter(fav => fav !== pokemon);
     },
     setLoading(state, status) {
@@ -26,11 +26,11 @@ export default createStore({
     },
   },
   actions: {
-    agregarPokemonFavorito({ commit }, pokemon) {
-      commit('agregarFavorito', pokemon);
+    addFavoritePokemon({ commit }, pokemon) {
+      commit('addFavorite', pokemon);
     },
-    eliminarPokemonFavorito({ commit }, pokemon) {
-      commit('eliminarFavorito', pokemon);
+    deleteFavoritePokemon({ commit }, pokemon) {
+      commit('deleteFavorite', pokemon);
     },
   },
   plugins: [vuexLocal.plugin],

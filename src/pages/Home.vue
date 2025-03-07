@@ -8,11 +8,11 @@
         max-height="350"
         aspect-ratio="1/1"
         cover
-        :src="imagen_portala"
+        :src="img_pikachu"
       ></v-img>
-      <h1 class="lato-bold ma-2">{{ titulo }}</h1>
+      <h1 class="lato-bold ma-2">{{ title }}</h1>
       <div class="text-container">
-        <p class="lato-regular ma-3">{{ descripcion }}</p>
+        <p class="lato-regular ma-3">{{ description }}</p>
       </div>
       <v-btn rounded class="ma-4" color="#F22539" flat @click="redirectToPage"
         >Get stared</v-btn
@@ -25,15 +25,15 @@ export default {
   name: "HomeComponent",
   data() {
     return {
-      //Se inicializan los siguientes parametros para no quemar el texto en el código
-      titulo: "Welcome to Pokédex",
-      descripcion:
+      //Initialization of values
+      title: "Welcome to Pokédex",
+      description:
         "The digital encyclopedia created by Professor Oak is an invaluable tool to Trainers in the Pokémon world.",
-      imagen_portala: require("../assets/Pokemon_portada.png"),
+      img_pikachu: require("../assets/Pikachu.png"),
     };
   },
   methods: {
-    //Función para redireccionar a la ruta /list donde se listaran los pokemo
+    //function for redirect to list
     redirectToPage() {
       this.$router.push("/list");
     },
@@ -49,7 +49,7 @@ export default {
 }
 @media (max-width: 600px) {
   .text-container {
-    max-width: 300px; /* Reduce el ancho en móviles */
+    max-width: 300px; /* moviles size */
   }
 }
 .layout-home {

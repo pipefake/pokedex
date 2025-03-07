@@ -5,7 +5,7 @@
     icon="$menu"
     elevation-0
     color="#F5F5F5"
-    @click="añadirFavorito;"
+    @click="addFavorite"
   >
     <v-icon v-if="isFavorite" color="#ECA539" size="27">mdi-star</v-icon>
     <v-icon size="27" v-else>mdi-star-outline</v-icon>
@@ -29,10 +29,10 @@ export default {
     },
   },
   methods: {
-    ...mapActions(["agregarPokemonFavorito", "eliminarPokemonFavorito"]),
+    ...mapActions(["addFavoritePokemon", "deleteFavoritePokemon"]),
 
     //Add a pokemon to store
-    añadirFavorito() {
+    addFavorite() {
       //Consult if a pokemon is already favorite one
       const isFavorite = this.favorites.some(
         (pokemon) => pokemon === this.pokemon_name
@@ -40,10 +40,10 @@ export default {
 
       if (!isFavorite) {
         //Add pokemon
-        this.agregarPokemonFavorito(this.pokemon_name);
+        this.addFavoritePokemon(this.pokemon_name);
       } else {
         //Delete pokemon
-        this.eliminarPokemonFavorito(this.pokemon_name);
+        this.deleteFavoritePokemon(this.pokemon_name);
       }
     },
   },

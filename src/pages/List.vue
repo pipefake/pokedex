@@ -7,23 +7,23 @@
 </template>
 
 <script>
+//Components
 import BottomNavigation from "../components/BottomNavigation.vue";
 import ListPokemons from "../layouts/PokemonsList.vue";
-// import ListFavoritesPokemons from "../layouts/ListFavoritesPokemons.vue";
 
 export default {
   name: "ListComponent",
   data() {
     return {
-      mostrarlista: 1, // Estado inicial
+      mostrarlista: 1, // show all pokemons first
     };
   },
   components: {
     BottomNavigation,
     ListPokemons,
-    // ListFavoritesPokemons,
   },
   methods: {
+    //change list (all=1 - favorites =2)
     switchList(id_seleccion) {
       this.mostrarlista = id_seleccion;
     },

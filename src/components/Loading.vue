@@ -3,7 +3,7 @@
   <v-flex v-if="isLoading" class="loader-overlay">
     <v-img
       :src="imgLoader"
-      alt="Pokébola"
+      alt="Pokeball"
       max-width="100"
       max-height="100"
       class="pokeball"
@@ -18,10 +18,11 @@ export default {
   name: "LoadingComponent",
   data() {
     return {
-      imgLoader: require("../assets/Pokebola.png"),
+      imgLoader: require("../assets/Pokeball.png"),
     };
   },
   computed: {
+    //Using state for callbacks
     ...mapState(["isLoading"]),
   },
 };

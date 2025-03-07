@@ -50,10 +50,12 @@ export default {
     };
   },
   methods: {
+    //switch list
     setSelected(id_seleccion) {
       this.selected = id_seleccion;
       this.$emit("switch", this.selected);
     },
+    //Exit to Home page
     redirectToPage() {
       this.$router.push("/");
     },

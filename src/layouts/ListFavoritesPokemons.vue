@@ -20,7 +20,7 @@
           :key="pokemon.id_pokemon"
           cols="12"
         >
-          <DetallePokemon :pokemon="pokemon" />
+          <PokemoDetails :pokemon="pokemon" />
         </v-col>
       </v-row>
     </v-container>
@@ -30,7 +30,7 @@
   <script>
 import axios from "axios";
 import { mapState, mapActions } from "vuex";
-import DetallePokemon from "../components/DetailPokemon.vue";
+import PokemoDetails from "../components/DetailPokemon.vue";
 
 export default {
   data() {
@@ -41,7 +41,7 @@ export default {
     };
   },
   components: {
-    DetallePokemon,
+    PokemoDetails,
   },
   computed: {
     ...mapState(["favorites"]),
@@ -55,10 +55,10 @@ export default {
   },
 
   methods: {
-    ...mapActions(["agregarPokemonFavorito"]),
+    ...mapActions(["addFavoritePokemon"]),
 
     añadirFavorito(pokemon) {
-      this.agregarPokemonFavorito(pokemon);
+      this.addFavoritePokemon(pokemon);
     },
 
     isFavorito(pokemonName) {

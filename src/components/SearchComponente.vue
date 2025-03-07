@@ -10,7 +10,7 @@
       hide-details
       single-line
       prepend-inner-icon="mdi-magnify"
-      @input="activadorBuscador"
+      @input="searchActivator"
     ></v-text-field>
   </v-flex>
 </template>
@@ -25,8 +25,8 @@ export default {
     };
   },
   methods: {
-    activadorBuscador() {
-      // Emitimos el valor actualizado de search
+    searchActivator() {
+      // Emit search value
       this.$emit("search", this.search);
     },
   },
