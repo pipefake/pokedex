@@ -1,7 +1,6 @@
 <template>
   <v-layout class="pa-5">
-    <ListPokemons v-if="this.mostrarlista === 1" />
-    <ListFavoritesPokemons v-if="this.mostrarlista === 2" />
+    <ListPokemons :tipo_lista="this.mostrarlista" />
     <BottomNavigation @switch="switchList" />
   </v-layout>
 </template>
@@ -9,7 +8,7 @@
 <script>
 import BottomNavigation from "../components/BottomNavigation.vue";
 import ListPokemons from "../layouts/ListPokemons.vue";
-import ListFavoritesPokemons from "../layouts/ListFavoritesPokemons.vue";
+// import ListFavoritesPokemons from "../layouts/ListFavoritesPokemons.vue";
 
 export default {
   name: "ListComponent",
@@ -21,7 +20,7 @@ export default {
   components: {
     BottomNavigation,
     ListPokemons,
-    ListFavoritesPokemons,
+    // ListFavoritesPokemons,
   },
   methods: {
     switchList(id_seleccion) {

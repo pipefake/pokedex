@@ -1,7 +1,7 @@
 <template>
   <v-card class="d-flex align-center pa-3 ma-0" style="height: 60px">
     <v-row>
-      <v-col class="d-flex align-center" @click="dialog = true" cols="9">
+      <v-col class="d-flex align-center" @click="activadorDetalle" cols="9">
         <span class="lato-regular">{{ pokemon_name }}</span>
       </v-col>
       <v-col cols="3" class="d-flex justify-end">
@@ -114,6 +114,10 @@ export default {
         console.error("Error loading Pokemon:", error);
       }
     },
+    activadorDetalle() {
+      this.dialog = true;
+      this.consultarPokemon();
+    },
     copiarInformacion() {
       navigator.clipboard.writeText(
         `Name: ${this.pokemon.name}, Weight: ${this.pokemon.weight}, Height: ${
@@ -137,9 +141,7 @@ export default {
       }
     },
   },
-  mounted() {
-    this.consultarPokemon(); // Fetch Pokemon info when the component is mounted
-  },
+  mounted() {},
   computed: {
     ...mapState(["favorites"]),
     isFavorite() {

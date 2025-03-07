@@ -30,6 +30,12 @@ import EmptyList from "../components/EmptyList.vue";
 
 export default {
   name: "AllPokemonsComponent",
+  props: {
+    tipo_lista: {
+      type: Number,
+      required: true,
+    },
+  },
   components: {
     Buscador,
     DetallePokemon,
@@ -46,11 +52,23 @@ export default {
   computed: {
     ...mapState(["favorites"]),
     filteredPokemones() {
-      if (!this.search) return this.pokemones; // No search, return all pokemons
-      return this.pokemones.filter(
-        (pokemon) =>
-          pokemon.name.toLowerCase().includes(this.search.toLowerCase()) // Filter by name
-      );
+      let filtered = this.pokemones;
+
+      // If tipo_lista is 2, filter the pokemones based on favorites
+      if (this.tipo_lista === 2) {
+        filtered = filtered.filter((pokemon) =>
+          this.favorites.includes(pokemon.name)
+        );
+      }
+
+      // Apply the search filter
+      if (this.search) {
+        filtered = filtered.filter((pokemon) =>
+          pokemon.name.toLowerCase().includes(this.search.toLowerCase())
+        );
+      }
+
+      return filtered;
     },
   },
 
