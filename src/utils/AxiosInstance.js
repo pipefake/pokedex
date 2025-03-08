@@ -3,7 +3,8 @@ import store from "@/store/index";
 
 const api = axios.create({
 
-  baseURL: "https://pokeapi.co",
+  baseURL: process.env.VUE_APP_URL_API_POKEDEX
+
 });
 
 api.interceptors.request.use(
